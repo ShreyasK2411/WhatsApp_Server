@@ -1,0 +1,27 @@
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class TestServer {
+
+	public static void main(String[] args) {
+		InetAddress ip;
+		
+		try {
+			System.out.println("ip: "+InetAddress.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
+		try(ServerSocket server=new ServerSocket(5051)) {
+			System.out.println("Waiting for connection.....");
+			Socket socket=server.accept();
+			System.out.println("Connected");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
